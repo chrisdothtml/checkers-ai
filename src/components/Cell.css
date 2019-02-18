@@ -1,0 +1,21 @@
+.cell {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  width: 60px;
+  font-size: 60px;
+}
+
+/* dark */
+.odd-row .cell:nth-child(odd),
+.even-row .cell:nth-child(even) {
+  background-color: #c1cfd0;
+}
+
+/* light */
+.odd-row .cell:nth-child(even),
+.even-row .cell:nth-child(odd) {
+  background-color: #ecf0f1;
+}
