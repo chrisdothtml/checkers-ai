@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build-ui": "parcel build src/index.html",
-    "dev-ui": "parcel src/index.html",
+    "build-ui": "parcel build src/ui/index.html",
+    "dev-ui": "parcel src/ui/index.html",
     "format": "standard --fix",
     "lint": "standard -v | snazzy",
     "test": "ava"

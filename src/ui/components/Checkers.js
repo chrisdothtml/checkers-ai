@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import React from 'react'
-import Game, { BLACK_VALUES, KING_VALUES, RED_VALUES } from '../../lib/Game/Game.js'
+import Game, { BLACK_VALUES, KING_VALUES, RED_VALUES } from '../../Game/Game.js'
 import './Checkers.css'
 
 function Piece (props) {
