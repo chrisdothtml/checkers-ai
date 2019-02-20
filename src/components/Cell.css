@@ -8,14 +8,10 @@
   font-size: 60px;
 }
 
-/* dark */
-.odd-row .cell:nth-child(odd),
-.even-row .cell:nth-child(even) {
+.cell.dark {
   background-color: #c1cfd0;
 }
 
-/* light */
-.odd-row .cell:nth-child(even),
-.even-row .cell:nth-child(odd) {
+.cell.light {
   background-color: #ecf0f1;
 }

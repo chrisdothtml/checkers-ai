@@ -1,20 +1,18 @@
+import cn from 'classnames'
 import React from 'react'
+import { BLACK_VALUES, KING_VALUES, RED_VALUES } from '../../lib/Game/Game.js'
 import './Piece.css'
 
-function getClassname (value) {
-  switch (value) {
-    case 1:
-      return 'black'
-    case 2:
-      return 'black king'
-    case 3:
-      return 'red'
-    case 4:
-      return 'red king'
-  }
-}
-
 export default function Piece (props) {
-  const className = `piece ${getClassname(props.value)}`
+  const { value } = props
+  const className = cn([
+    'piece',
+    {
+      black: BLACK_VALUES.includes(value),
+      king: KING_VALUES.includes(value),
+      red: RED_VALUES.includes(value)
+    }
+  ])
+
   return <div className={ className } />
 }

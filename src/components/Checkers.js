@@ -50,10 +50,8 @@ export default class Checkers extends React.Component {
     return (
       <div className='board'>
         { this.state.board.map((row, y) => {
-          const className = `row ${y % 2 === 0 ? 'even-row' : 'odd-row'}`
-
           return (
-            <div className={ className } key={ y }>
+            <div className='row' key={ y }>
               { row.map((value, x) => (
                 <Cell
                   key={ x }
