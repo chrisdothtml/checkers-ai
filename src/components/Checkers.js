@@ -1,7 +1,39 @@
+import cn from 'classnames'
 import React from 'react'
-import Game from '../../lib/Game/Game.js'
-import Cell from './Cell.js'
+import Game, { BLACK_VALUES, KING_VALUES, RED_VALUES } from '../../lib/Game/Game.js'
 import './Checkers.css'
+
+function Piece (props) {
+  const { value } = props
+  const className = cn([
+    'piece',
+    {
+      black: BLACK_VALUES.includes(value),
+      king: KING_VALUES.includes(value),
+      red: RED_VALUES.includes(value)
+    }
+  ])
+
+  return <div className={ className } />
+}
+
+function Cell (props) {
+  const { onSelectCell, selected, value, x, y } = props
+  const className = cn([
+    'cell',
+    value === -1 ? 'light' : 'dark',
+    { selected }
+  ])
+
+  return (
+    <div
+      className={ className }
+      onClick={ () => onSelectCell(x, y) }
+    >
+      { value > 0 && <Piece value={ value } /> }
+    </div>
+  )
+}
 
 export default class Checkers extends React.Component {
   constructor (props) {

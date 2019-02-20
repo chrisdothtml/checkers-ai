@@ -6,3 +6,67 @@
 .row {
   display: flex;
 }
+
+.cell {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  width: 60px;
+  font-size: 60px;
+}
+
+.cell.dark {
+  background-color: #c1cfd0;
+}
+
+.cell.light {
+  background-color: #ecf0f1;
+}
+
+.piece {
+  background-color: currentColor;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, .4);
+  height: 80%;
+  width: 80%;
+  position: relative;
+}
+
+.selected .piece {
+  border: 3px solid #f39c12;
+}
+
+.piece.black {
+  color: #34495e;
+}
+
+.piece.red {
+  color: #e74c3c;
+}
+
+.piece.king:before,
+.piece.king:after {
+  height: 100%;
+  left: -8%;
+  position: absolute;
+  top: -8%;
+  width: 100%;
+}
+
+.piece.king:before {
+  background-color: currentColor;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, .4);
+  content: '';
+}
+
+.piece.king:after {
+  color: rgba(255, 255, 255, .2);
+  content: 'K';
+  line-height: 1;
+  margin-top: calc((100% - 1em) / 2);
+  text-align: center;
+  font-size: .5em;
+}
