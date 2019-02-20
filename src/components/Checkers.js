@@ -8,9 +8,9 @@ function Piece (props) {
   const className = cn([
     'piece',
     {
-      black: BLACK_VALUES.includes(value),
-      king: KING_VALUES.includes(value),
-      red: RED_VALUES.includes(value)
+      black: BLACK_VALUES.has(value),
+      king: KING_VALUES.has(value),
+      red: RED_VALUES.has(value)
     }
   ])
 
