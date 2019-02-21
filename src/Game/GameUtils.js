@@ -11,10 +11,12 @@ export default class GameUtils {
   }
 
   getPos ([ y, x ]) {
+    if (y < 0 || x < 0 || y > 7 || x > 7) return null
     return this.game.board[y][x]
   }
 
   setPos ([ y, x ], value) {
+    if (y < 0 || x < 0 || y > 7 || x > 7) return null
     this.game.board[y][x] = value
     return value
   }
