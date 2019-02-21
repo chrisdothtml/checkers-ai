@@ -23,12 +23,12 @@ test('getJumpedPos', (t) => {
 test('isAllies', (t) => {
   const game = new Game()
 
+  t.is(game.utils.isAllies(-1, -1), true)
+  t.is(game.utils.isAllies(-1, -2), true)
   t.is(game.utils.isAllies(1, 1), true)
   t.is(game.utils.isAllies(1, 2), true)
-  t.is(game.utils.isAllies(3, 3), true)
-  t.is(game.utils.isAllies(3, 4), true)
-  t.is(game.utils.isAllies(1, 3), false)
-  t.is(game.utils.isAllies(2, 4), false)
+  t.is(game.utils.isAllies(-1, 1), false)
+  t.is(game.utils.isAllies(-2, 2), false)
 })
 
 test('isBackwardMove', (t) => {
@@ -58,12 +58,12 @@ test('isValidMove', (t) => {
   t.is(game.utils.isValidMove([5, 0], [4, 1]), true)
 
   // jump
-  game.board[4][1] = 1
+  game.board[4][1] = -1
   t.is(game.utils.isValidMove([5, 0], [3, 2]), true)
   game.board[4][1] = INITIAL_BOARD[4][1]
 
   // backwards moves
-  game.board[5][0] = 4
+  game.board[5][0] = -2
   game.board[6][1] = 0
   t.is(game.utils.isValidMove([5, 0], [6, 1]), true)
   t.is(game.utils.isValidMove([5, 2], [6, 1]), false)

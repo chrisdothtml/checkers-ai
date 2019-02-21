@@ -1,26 +1,22 @@
 import GameUtils from './GameUtils.js'
 
-export const TOP_VALUES = new Set([1, 2])
-export const KING_VALUES = new Set([2, 4])
-export const MOVABLE_VALUES = new Set([1, 2, 3, 4])
-export const BOTTOM_VALUES = new Set([3, 4])
 /*
--1: empty; can't move to
+null: empty; can't move to
+-2: top king
+-1: top
 0: empty
-1: top
-2: top king
-3: bottom
-4: bottom king
+1: bottom
+2: bottom king
 */
 export const INITIAL_BOARD = [
-  [-1, 1, -1, 1, -1, 1, -1, 1],
-  [1, -1, 1, -1, 1, -1, 1, -1],
-  [-1, 1, -1, 1, -1, 1, -1, 1],
-  [0, -1, 0, -1, 0, -1, 0, -1],
-  [-1, 0, -1, 0, -1, 0, -1, 0],
-  [3, -1, 3, -1, 3, -1, 3, -1],
-  [-1, 3, -1, 3, -1, 3, -1, 3],
-  [3, -1, 3, -1, 3, -1, 3, -1]
+  [null, -1, null, -1, null, -1, null, -1],
+  [-1, null, -1, null, -1, null, -1, null],
+  [null, -1, null, -1, null, -1, null, -1],
+  [0, null, 0, null, 0, null, 0, null],
+  [null, 0, null, 0, null, 0, null, 0],
+  [1, null, 1, null, 1, null, 1, null],
+  [null, 1, null, 1, null, 1, null, 1],
+  [1, null, 1, null, 1, null, 1, null]
 ]
 
 export default class Checkers {
@@ -34,11 +30,9 @@ export default class Checkers {
       const originVal = this.utils.getPos(origin)
       let setVal = originVal
 
-      // king me
-      if (originVal === 1 && dest[0] === (this.board.length - 1)) {
-        setVal = 2
-      } else if (originVal === 3 && dest[0] === 0) {
-        setVal = 4
+      if ((originVal === -1 && dest[0] === 7) || (originVal === 1 && dest[0] === 0)) {
+        // king me
+        setVal *= 2
       }
 
       if (this.utils.getDiagDistance(origin, dest) === 2) {

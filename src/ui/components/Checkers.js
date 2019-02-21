@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import React from 'react'
-import Game, { TOP_VALUES, KING_VALUES, BOTTOM_VALUES } from '../../Game/Game.js'
+import Game from '../../Game/Game.js'
 import './Checkers.css'
 
 function Piece (props) {
@@ -8,9 +8,9 @@ function Piece (props) {
   const className = cn([
     'piece',
     {
-      top: TOP_VALUES.has(value),
-      king: KING_VALUES.has(value),
-      bottom: BOTTOM_VALUES.has(value)
+      top: value < 0,
+      king: Math.abs(value) === 2,
+      bottom: value > 0
     }
   ])
 
@@ -21,7 +21,7 @@ function Cell (props) {
   const { onSelectCell, selected, value, x, y } = props
   const className = cn([
     'cell',
-    value === -1 ? 'light' : 'dark',
+    value === null ? 'light' : 'dark',
     { selected }
   ])
 
@@ -30,7 +30,7 @@ function Cell (props) {
       className={className}
       onClick={() => onSelectCell(x, y)}
     >
-      { value > 0 && <Piece value={value} /> }
+      { !!value && value !== null && <Piece value={value} /> }
     </div>
   )
 }

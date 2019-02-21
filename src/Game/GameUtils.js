@@ -1,10 +1,3 @@
-import {
-  TOP_VALUES,
-  KING_VALUES,
-  MOVABLE_VALUES,
-  BOTTOM_VALUES
-} from './Game.js'
-
 export default class GameUtils {
   constructor (game) {
     this.game = game
@@ -37,10 +30,10 @@ export default class GameUtils {
   }
 
   isAllies (value1, value2) {
-    if (TOP_VALUES.has(value1)) {
-      return TOP_VALUES.has(value2)
-    } else if (BOTTOM_VALUES.has(value1)) {
-      return BOTTOM_VALUES.has(value2)
+    if (value1 < 0) {
+      return value2 < 0
+    } else if (value1 > 0) {
+      return value2 > 0
     }
 
     return false
@@ -49,9 +42,9 @@ export default class GameUtils {
   isBackwardMove (origin, dest) {
     const originValue = this.getPos(origin)
 
-    if (TOP_VALUES.has(originValue)) {
+    if (originValue < 0) {
       return origin[0] > dest[0]
-    } else if (BOTTOM_VALUES.has(originValue)) {
+    } else if (originValue > 0) {
       return origin[0] < dest[0]
     }
 
@@ -62,22 +55,25 @@ export default class GameUtils {
     return !!this.getDiagDistance(...args)
   }
 
+  isMovable (value) {
+    return value && Math.abs(value) < 3
+  }
+
   isValidMove (...args) {
     const [ origin, dest ] = args
     const originValue = this.getPos(origin)
     const destValue = this.getPos(dest)
 
-    // movable piece moving to empty space
-    if (MOVABLE_VALUES.has(originValue) && destValue === 0) {
+    if (this.isMovable(originValue) && destValue === 0) {
       // only kings move backwards
-      if (!this.isBackwardMove(...args) || KING_VALUES.has(originValue)) {
+      if (!this.isBackwardMove(...args) || Math.abs(originValue) === 2) {
         switch (this.getDiagDistance(...args)) {
           case 1:
             return true
           case 2:
             const jumpedValue = this.getPos(this.getJumpedPos(...args))
 
-            if (MOVABLE_VALUES.has(jumpedValue)) {
+            if (this.isMovable(jumpedValue)) {
               return !this.isAllies(originValue, jumpedValue)
             }
         }
