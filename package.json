@@ -13,7 +13,7 @@
   },
   "ava": {
     "files": [
-      "lib/**/*.test.js"
+      "src/**/*.test.js"
     ],
     "require": [
       "esm"
