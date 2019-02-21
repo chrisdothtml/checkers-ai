@@ -1,18 +1,16 @@
 import GameUtils from './GameUtils.js'
 
-// black starts at the top
-export const BLACK_VALUES = new Set([1, 2])
+export const TOP_VALUES = new Set([1, 2])
 export const KING_VALUES = new Set([2, 4])
 export const MOVABLE_VALUES = new Set([1, 2, 3, 4])
-// red starts at the bottom
-export const RED_VALUES = new Set([3, 4])
+export const BOTTOM_VALUES = new Set([3, 4])
 /*
 -1: empty; can't move to
 0: empty
-1: black
-2: black king
-3: red
-4: red king
+1: top
+2: top king
+3: bottom
+4: bottom king
 */
 export const INITIAL_BOARD = [
   [-1, 1, -1, 1, -1, 1, -1, 1],

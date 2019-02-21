@@ -1,8 +1,8 @@
 import {
-  BLACK_VALUES,
+  TOP_VALUES,
   KING_VALUES,
   MOVABLE_VALUES,
-  RED_VALUES
+  BOTTOM_VALUES
 } from './Game.js'
 
 export default class GameUtils {
@@ -35,10 +35,10 @@ export default class GameUtils {
   }
 
   isAllies (value1, value2) {
-    if (BLACK_VALUES.has(value1)) {
-      return BLACK_VALUES.has(value2)
-    } else if (RED_VALUES.has(value1)) {
-      return RED_VALUES.has(value2)
+    if (TOP_VALUES.has(value1)) {
+      return TOP_VALUES.has(value2)
+    } else if (BOTTOM_VALUES.has(value1)) {
+      return BOTTOM_VALUES.has(value2)
     }
 
     return false
@@ -47,9 +47,9 @@ export default class GameUtils {
   isBackwardMove (origin, dest) {
     const originValue = this.getPos(origin)
 
-    if (BLACK_VALUES.has(originValue)) {
+    if (TOP_VALUES.has(originValue)) {
       return origin[0] > dest[0]
-    } else if (RED_VALUES.has(originValue)) {
+    } else if (BOTTOM_VALUES.has(originValue)) {
       return origin[0] < dest[0]
     }
 

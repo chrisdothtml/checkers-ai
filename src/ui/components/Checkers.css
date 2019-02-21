@@ -38,11 +38,11 @@
   border: 3px solid #f39c12;
 }
 
-.piece.black {
+.piece.top {
   color: #34495e;
 }
 
-.piece.red {
+.piece.bottom {
   color: #e74c3c;
 }
 

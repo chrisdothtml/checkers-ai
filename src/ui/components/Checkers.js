@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import React from 'react'
-import Game, { BLACK_VALUES, KING_VALUES, RED_VALUES } from '../../Game/Game.js'
+import Game, { TOP_VALUES, KING_VALUES, BOTTOM_VALUES } from '../../Game/Game.js'
 import './Checkers.css'
 
 function Piece (props) {
@@ -8,9 +8,9 @@ function Piece (props) {
   const className = cn([
     'piece',
     {
-      black: BLACK_VALUES.has(value),
+      top: TOP_VALUES.has(value),
       king: KING_VALUES.has(value),
-      red: RED_VALUES.has(value)
+      bottom: BOTTOM_VALUES.has(value)
     }
   ])
 
