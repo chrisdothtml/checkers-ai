@@ -5,7 +5,7 @@
     "dev-ui": "parcel src/ui/index.html",
     "format": "standard --fix",
     "lint": "standard -v | snazzy",
-    "test": "ava"
+    "test": "ava -v",
   },
   "engines": {
     "node": ">=11",
