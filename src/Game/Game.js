@@ -20,8 +20,8 @@ export const INITIAL_BOARD = [
 ]
 
 export default class Checkers {
-  constructor () {
-    this.board = [ ...INITIAL_BOARD ]
+  constructor (initialBoard = INITIAL_BOARD) {
+    this.board = [ ...initialBoard ]
     this.utils = new GameUtils(this)
   }
 
