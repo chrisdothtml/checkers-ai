@@ -30,7 +30,7 @@ function Cell (props) {
       className={className}
       onClick={() => onSelectCell(x, y)}
     >
-      { !!value && value !== null && <Piece value={value} /> }
+      { !!value && <Piece value={value} /> }
     </div>
   )
 }
@@ -81,22 +81,20 @@ export default class Checkers extends React.Component {
   render () {
     return (
       <div className='board'>
-        { this.state.board.map((row, y) => {
-          return (
-            <div className='row' key={y}>
-              { row.map((value, x) => (
-                <Cell
-                  key={x}
-                  onSelectCell={this.onSelectCell.bind(this)}
-                  selected={this.cellIsSelected(x, y)}
-                  value={value}
-                  x={x}
-                  y={y}
-                />
-              )) }
-            </div>
-          )
-        }) }
+        { this.state.board.map((row, y) => (
+          <div className='row' key={y}>
+            { row.map((value, x) => (
+              <Cell
+                key={x}
+                onSelectCell={this.onSelectCell.bind(this)}
+                selected={this.cellIsSelected(x, y)}
+                value={value}
+                x={x}
+                y={y}
+              />
+            )) }
+          </div>
+        )) }
       </div>
     )
   }
