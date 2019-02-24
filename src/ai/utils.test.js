@@ -1,6 +1,7 @@
 import test from 'ava'
 import {
   condenseBoard,
+  getCondensedNumFromDataNum,
   getFullPosFromCondensedNum,
   getFullPosFromDataNum
 } from './utils.js'
@@ -30,4 +31,10 @@ test('getFullPosFromDataNum', (t) => {
   t.deepEqual(getFullPosFromDataNum(32), [0, 1])
   t.deepEqual(getFullPosFromDataNum(22), [2, 5])
   t.deepEqual(getFullPosFromDataNum(1), [7, 6])
+})
+
+test('getCondensedNumFromDataNum', (t) => {
+  t.deepEqual(getCondensedNumFromDataNum(32), 0)
+  t.deepEqual(getCondensedNumFromDataNum(22), 10)
+  t.deepEqual(getCondensedNumFromDataNum(1), 31)
 })

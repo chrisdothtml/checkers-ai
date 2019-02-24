@@ -1,23 +1,45 @@
 import Game from '../Game/Game.js'
+import Brain from './brain.js'
 import { getTrainingData } from './data.js'
-import { getFullPosFromDataNum } from './utils.js'
+import {
+  condenseBoard,
+  getCondensedNumFromDataNum,
+  getFullPosFromDataNum
+} from './utils.js'
 
-// temporary; just validating all the moving parts.
-// grabs the first training game and plays it through a Game
-// instance, then logs the final game board
+const brain = new Brain()
+
+function isBrainMove (game, move) {
+  const value = game.utils.getPos(
+    getFullPosFromDataNum(move[0])
+  )
+
+  // brain is the top player
+  return value < 0
+}
+
 async function main () {
-  const game = new Game()
   const trainingGames = await getTrainingData()
 
-  for (const moveGroup of trainingGames[0]) {
-    for (const move of moveGroup) {
-      game.move(
-        ...move.map(getFullPosFromDataNum)
-      )
+  for (const trainingGame of trainingGames) {
+    const game = new Game()
+
+    for (const moveGroup of trainingGame) {
+      for (const move of moveGroup) {
+        // only teach one player's moves
+        if (isBrainMove(game, move)) {
+          brain.teach(
+            condenseBoard(game.board),
+            move.map(getCondensedNumFromDataNum)
+          )
+        }
+
+        game.move(
+          ...move.map(getFullPosFromDataNum)
+        )
+      }
     }
   }
-
-  console.log(game.board)
 }
 
 main().catch(console.error)
